@@ -1,7 +1,11 @@
 <template>
-    <div class="todoitem">
-        <input type="checkbox" >
-        {{ todoProps }}
+    <div :class="['todoitem', todoProps.complete ? 'is-complete' : '']" >
+        <input 
+            type="checkbox"  
+            :checked="todoProps.complete"
+            @change="markItemComplete"
+            >
+        {{ todoProps.title }}
         <button class="red-btn">Delete</button>
     </div> 
 </template>
@@ -9,7 +13,18 @@
 <script>
 export default {
     name: "TodoItem",
-    props: ['todoProps']
+    props: ['todoProps'],
+    
+    setup(props, context) {
+        const markItemComplete = () => {
+            context.emit('check-id', props.todoProps.id)
+        }
+
+        return {
+            markItemComplete
+        }
+    }
+
 }
 </script>
 
@@ -30,6 +45,9 @@ export default {
     border-bottom: 1px #ccc dotted;
     height: 30px;
     line-height: 30px;
+}
+.is-complete {
+    text-decoration: line-through;
 }
 
 </style>
