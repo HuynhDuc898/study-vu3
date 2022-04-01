@@ -1,5 +1,5 @@
 <template>
-    <div :class="['todoitem', todoProps.completed ? 'is-complete' : '']" >
+    <!-- <div :class="['todoitem', todoProps.completed ? 'is-complete' : '']" >
         <input 
             type="checkbox"  
             :checked="todoProps.completed"
@@ -7,7 +7,16 @@
             >
         {{ todoProps.title }}
         <button class="red-btn" @click="deleteItem">Delete</button>
-    </div> 
+    </div>  -->
+    
+    <tr>
+        <td>{{todoProps.name}}</td>
+        <td>{{todoProps.email}}</td>
+        <td>{{todoProps.role.name}}</td>
+        <td>
+            <button class="btn-del" @click="deleteItem">Delete</button>
+        </td>
+    </tr>
 </template>
 
 <script>
@@ -25,22 +34,23 @@ export default {
 
         return {
             markItemComplete,
-            deleteItem
+            deleteItem,
+            
         }
-    }
+    },
 
 }
 </script>
 
 <style>
-.red-btn {
-    background: #ff0000;
+.btn-del {
+    background: rgb(240, 58, 58);
     color: #ffff;
     border: none;
-    padding: 2px;
-    float: right;
+    padding: 4px;
     cursor: pointer;
     width: 70px;
+    border-radius: 5px;
     
 }
 .todoitem {

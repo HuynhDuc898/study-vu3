@@ -1,8 +1,10 @@
 <template>
-  <form @submit.prevent="addItem">
-      <input type="text" placeholder="Viec lam...." v-model="title" >
-      <input type="submit" value="Thêm" class="add-btn">
+  <!-- <form @submit.prevent="addItem"> -->
+  <form @submit.prevent="searchList">
+      <input type="text" placeholder="Nhap tu tim kiem ..." v-model="title" >
+      <input type="submit" value="Search" class="add-btn">
   </form>
+  <!-- <div><button class='btn-add'>Add</button></div> -->
 </template>
 
 <script>
@@ -25,10 +27,16 @@ export default {
             context.emit('add-todo', newItem);
             title.value = '';
         }
+
+        const searchList = () => {
+            // console.log(title.value)
+            context.emit('search-user', title.value)
+        } 
         
         return {
             title,
-            addItem
+            addItem,
+            searchList
             
         }
     }
@@ -47,5 +55,10 @@ input[type='text'] {
 
 input[type='submit'] {
     flex: 2;
+}
+.btn-add {
+    float: right;
+    background: red;
+    z-index: 2;
 }
 </style>

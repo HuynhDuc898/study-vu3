@@ -1,12 +1,19 @@
 <template>
   <header class="header">
-      <h1>Viec Can Lam</h1>
+      <h1>Danh Sach User</h1>
+      <!-- <AddTodo /> -->
   </header>
 </template>
 
 <script>
+import AddTodo from './AddTodo.vue';
 export default {
-    name: "Header"
+    name: "Header",
+    setup() {
+        return {
+            AddTodo
+        }
+    }
 }
 </script>
 
